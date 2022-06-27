@@ -1,28 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const middleware=require("../controllers/middleware.js");
-const reg=require("../controllers/authentication.js");
-const usercontrollers=require("../controllers/usercontroller.js");
 const quizcontroller=require("../controllers/quizcontroller.js");
 const quizusage=require("../controllers/quizusage.js");
-//Registration of user
-router.route("/register")
-    .get(reg.register_get)
-    .post(reg.register_post);
-
-//Login of user
-router.route("/login")
-    .get(reg.login_get)
-    .post(reg.login_post);
-
-//Logout the user
-router.route("/logout")
-    .get(reg.logout);
-
-//Display profile page
-router.route("/profile")
-    .get(middleware.user,usercontrollers.profile);
-
 //Quiz Creation - Subject
 router.route("/createQuiz/")
     .get(middleware.teacher,quizcontroller.subject_get)

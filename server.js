@@ -38,7 +38,10 @@ app.get("/", async function (req, res) {
 
 app.use(cors());
 //Fetching of routes
-let userroutes=require('./routes/root');
+let teacherroutes=require('./routes/teacher');
+app.use('/',teacherroutes);
+
+let userroutes=require('./routes/user');
 app.use('/',userroutes);
 
 app.listen("3121", async function () {

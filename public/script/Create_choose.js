@@ -3,14 +3,25 @@ function quiz() {
 }
 // const axios=require("asxios");
 const choose_subject=(e)=>{
-    let subject=e.getElementsByClassName("subject")[0].innerHTML;
+    let subject=e.getElementsByClassName("subject")[0].innerText;
+    // console.log(subject);
     let url=window.location.href+subject+"/";
     window.location=url;
 }
 
+const choose_quiz=(e)=>{
+    let subject=e.getElementsByClassName("subject")[0].id;
+    let url=window.location.href+subject+"/";
+    window.location=url;
+}
 const choose_topic=(e)=>{
-    let subject=e.getElementsByClassName("subject")[0].innerHTML;
-    let url=window.location.href+subject+"/newQuiz/";
+    let subject=e.getElementsByClassName("subject")[0].innerText;
+    let url=window.location.href+subject+"/";
+    if(window.location.href.split('/')[3]==="createQuiz")
+    {
+        url+="newQuiz/";
+    }
+    // else
     window.location=url;
 }
 const sendHTTPreq=(method,url,data)=>{

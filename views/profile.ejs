@@ -14,8 +14,14 @@
         <h1>Quiz Mania</h1>
         <div class="navbar_item">
             <a href="/profile/">Profile</a>
-            <a href="">Quiz</a>
+            <a href="/quiz/">Quiz</a>
+            <%
+                if(user.Is_Teacher){
+            %>
             <a href="/createQuiz/">New Quiz</a>
+            <%
+                }
+            %>
             <a href="/logout">Log out</a>
         </div>
     </nav>

@@ -36,18 +36,13 @@ const create_quiz = async (Quiz, topic) => {
 const subject_get = async (req, res) => {
     // console.log(req.isAuthenticated(),req.user,req.params);
     try {
-        db.Subject.find({}, async function (err, result) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                res.render("Create_choose.ejs",{
-                    data:result,
-                    user:req.user,
-                    choose:"Subject"
-                });
-            }
-        })
+        result=await db.Subject.find({});
+        res.render("Create_choose.ejs",{
+            data:result,
+            user:req.user,
+            choose:"Subject",
+            view:false
+        });
     } catch (error) {
         console.log(error);
     }
@@ -101,7 +96,8 @@ const topic_get = async (req, res) => {
             res.render("Create_choose.ejs",{
                 data:data,
                 user:req.user,
-                choose:"Topic"
+                choose:"Topic",
+                view:false
             });
         }
         else{
@@ -211,7 +207,8 @@ const quiz_create = async (req, res) => {
         let quiz_r = new db.Quiz_Relation({
             User: req.user._id,
             Quiz: k,
-            Name: req.body.Quiz.Name
+            Name: req.body.Quiz.Name,
+            Creator: req.user.First_Name+req.user.Last_Name
         })
         await quiz_r.save(function (err) {
             if (err) {

@@ -100,7 +100,8 @@ const quiz_relation_schema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref: User
     },
-    Name: String
+    Name: String,
+    Creator: String
 })
 const Quiz_Relation=mongoose.model("Quiz_Relation",quiz_relation_schema);
 
