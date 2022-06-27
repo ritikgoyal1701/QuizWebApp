@@ -1,0 +1,128 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("../images/login.jpg");
+    background-repeat: no-repeat;
+    background-size:150%;
+    background-position: 0px 0px;
+}
+.box{
+    margin: 15vh auto 0;
+    width: fit-content;
+    height: fit-content;
+    padding: 30px;
+    background: rgba(0,0,0,0.4);
+    text-align: center;
+}
+hr{
+    border-top:1px solid white ;
+  }
+.box h1,h2{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+}
+p
+{
+    color: aliceblue;
+}
+.box input
+{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 3px solid #0367fd;
+    padding: 14px 10px;
+    width: 25vw;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+}
+.box input:focus{
+
+    /* width: 270px; */
+    border-color:white;
+
+}
+.box button{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 3px solid #0367fd;
+    padding: 14px 35px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    cursor: pointer;
+}
+.box button:hover{
+    background: #0367fd;
+}
+.logo{
+    width: 350px;
+    margin: 10px;
+    font-size: 47px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    text-align: center;
+}
+
+.radio label{
+    display: inline-block;
+    grid-template-columns: 0.5fr 0.5fr;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    border: 3px solid #0367fd;
+    border-radius: 24px;
+    width: 15vw;
+    height:3vw;
+    color: white;
+  }
+  .radio input[type = "radio"]{
+    position:left;
+  } 
+
+  [type="checkbox"]:checked,
+  [type="checkbox"]:not(:checked){
+      position: absolute;
+      left: -9999px;
+  }
+  .checkbox:checked + label,
+  .checkbox:not(:checked) + label{
+      position: relative;
+      display: block;
+      text-align: center;
+      width: 60px;
+      height: 16px;
+      border-radius: 8px;
+      padding: 0;
+      margin: 10px auto;
+      cursor: pointer;
+      background-color: #ffffff;
+  }
+  .checkbox:checked + label:before,
+  .checkbox:not(:checked) + label:before{
+      position: absolute;
+      display: block;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: #12f8ad;
+      background-color: #2a2b38;
+      font-family: 'unicons';
+      content: '\eb4f';
+      z-index: 20;
+      top: -10px;
+      left: -10px;
+      line-height: 36px;
+      text-align: center;
+      font-size: 24px;
+      transition: all 0.5s ease;
+  }
+  

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Quiz</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="/css/quizcreate.css">
+</head>
+
+<body>
+    <nav>
+        <h1>Quiz Mania</h1>
+        <div class="navbar_item">
+            <a href="/profile">Profile</a>
+            <a href="">Quiz</a>
+            <a href="/createQuiz/">New Quiz</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </nav>
+    <div class="space">
+        <h1>CREATE QUIZ</h1>
+    </div>
+    <div class="quiz_btn">
+        <div class="head">
+            Quiz
+            <form class="ques" action=""
+                style="display: inline; font-weight: bolder; padding-left: 5px; font-size: 15px;">
+                <input type="text" name="quiz" id="quiz" required><br>
+            </form>
+        </div>
+        <div>
+            <div id="msg"></div>
+        </div>
+        <div class="create_quiz">
+            <button class="btn btn-light" id="create_quiz" onclick="create_quiz();">CREATE QUIZ</button>
+        </div>
+    </div>
+    <div class="quizzes">
+        <div class="select_ques">
+            <div class="btn20">
+                <button class="btn btn-outline-light " id="Button" type="button" style="margin-right: 5px;"
+                    value="Choose Questions from Database" onclick="switchVisible();">Choose Questions from
+                    Database</button>
+                <button class="btn btn-outline-light" id="Button" type="button" onclick="switchhVisible();">Insert New
+                    Questions</button>
+
+            </div>
+            <div class="questions">
+                <div id="database">
+                    <h2>Please select from the following questions:</h2>
+                    <div id="ques">
+                        <%
+                            if(data.length===0){
+                        %>
+                                <span class="No_added">No Question is added!!</span>
+                        <%
+                            }
+                            else
+                            {
+                                data.forEach(element=>{
+                        %>
+                                    <div class="card w-100 ques_card card-body" id="<%=element._id%>">
+                                        <p><%=element.Question%></p>
+                                        <p><%=element.Options[0]%></p>
+                                        <p><%=element.Options[1]%></p>
+                                        <p><%=element.Options[2]%></p>
+                                        <p><%=element.Options[3]%></p>
+                                        <p> Answer: Option-<%=element.Answer%> </p>
+                                        <button class="btn btn-outline-dark select" id="Button1" type="button">Select</button>
+                                    </div>
+                        <%            
+                                })
+                            }
+                        %>
+                        
+                    </div>
+                </div>
+                <div id="insert_new">
+                    <!-- <button type="submit" class="btn btn-outline-light " id="btn1" onclick="insertnew()">Add the Question</button> -->
+                </div>
+            </div>
+
+        </div>
+        <div class="selected_ques">
+            <h1>Selected Questions</h1>
+            <div id="qsabcd" class="questions"></div>
+        </div>
+
+    </div>
+
+</body>
+<script type="text/javascript" src="/script/quizcreate.js"></script>
+
+</html>

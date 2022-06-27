@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav>
+        <h1>Quiz Mania</h1>
+        <div class="navbar_item">
+            <a href="/profile/">Profile</a>
+            <a href="">Quiz</a>
+            <a href="/createQuiz/">New Quiz</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </nav>
+    <img src="/images/profile_background_image.jpg" class="background_image">
+    <div class="information">
+        <div class="profile_image_box">
+            <img src="/images/profile_image.jpg" class="profile_image" style="margin-top: -18vh;">
+        </div>
+        <div class="profile_info">
+            <span class="name"><%=user.First_Name%> <%=user.Last_Name%></span>
+            <%let pro="Student";
+            if(user.Is_Teacher){
+                pro="Teacher";
+            }%>
+            <span class="profession"><%=pro%></span>
+            <div class="profile_info_details">
+                <i class="fa fa-envelope-o" aria-hidden="true"><span><%=user.username%></span></i>
+                <i class="fa fa-mobile" aria-hidden="true"><span><%=user.Phone_No%></span></i>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="cards">
+        <h2 class="quiz">QUIZZES</h2>    
+        <div class="card_container">
+            <% var n=data.length;
+            if(n===0)
+            {%>
+                <div>
+                   NOT CREATED ANY QUIZ 
+                </div>
+            <%}
+            else
+            {
+                for(let i=0; i<n; i=i+1)
+                {%>
+                    <div class="card">
+                        <div class="upper_card">
+                            <span class="subject"><%=data[i].Name%></span>
+                        </div>
+                        <hr style="margin: 0; border-top: 1px solid black">
+                        <div class="lower_card">
+                            <span>Attempts: <%=data[i].details.Attempts%></span>
+                            <span>Maximum Marks Achieve: <%=data[i].details.Maximum_Marks_Achieve%></span>
+                            <span>Average: <%=data[i].details.Average%></span>
+                            <span>Maximum Marks: <%=data[i].details.Maximum_Marks%>     </span>
+                        </div>
+                    </div>
+                <%}
+            }%>     
+        </div>
+    </div>
+</body>
+</html>

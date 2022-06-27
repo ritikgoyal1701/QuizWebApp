@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Choose <%=choose%>
+  </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+  <link rel="stylesheet" href="/css/Create_choose.css">
+</head>
+
+<body>
+  <nav>
+    <h1>Quiz Mania</h1>
+    <div class="navbar_item">
+      <a href="/profile">Profile</a>
+      <a href="">Quiz</a>
+      <a href="/createQuiz/">New Quiz</a>
+      <a href="/logout">Log out</a>
+    </div>
+  </nav>
+  <div class="space">
+    <h2 id="create">CHOOSE <%=choose%></h2>
+  </div>
+  <div class="cards">
+    <!-- <h2 class="quiz"></h2>     -->
+    <%
+      if(choose==="Subject")
+      {
+        if(data.length>0)
+        {
+    %>
+      <div class="card_container">
+        <%
+        data.forEach(element=>{
+        %>
+          <div class="card" onclick="choose_subject(this)">
+            <div class="upper_card">
+              <span class="subject"><%=element.Subject%></span>
+            </div>
+            <hr style="margin: 0; border-top: 1px solid black">
+            <div class="lower_card">
+              <ul>
+                <%
+                  let n=element.Topics.length;
+                  let k=Math.min(n,4);
+                  if(k>0){
+                  for(let i=0; i<k; i=i+1)
+                  {
+                    %>
+                    <li><%=element.Topics[i].Name%></li>
+                    <%
+                  }
+                  if(n>k){
+                    %>
+                    <span id="many_more">And many more....</span>
+                    <%
+                  }
+                }
+                else{%>
+                  <span id="Nothing">No Topic is added!!</span>
+                <%}
+                %>
+              </ul>
+            </div>
+          </div>
+        <%  
+          });
+        %>
+      </div>
+    <%
+        }
+        else
+        {
+    %>
+            <span class="No_added">No <%=choose%> is added!!</span>      
+    <%  }
+      }
+      else
+      {
+        if(data.length>0)
+        {
+    %>
+    <div class="card_container">
+      <%
+      data.forEach(element=>{
+      %>
+        <div class="card" onclick="choose_topic(this)">
+          <div class="upper_card">
+            <span class="subject"><%=element.Topic%></span>
+          </div>
+          <hr style="margin: 0; border-top: 1px solid black">
+          <div class="lower_card">
+            <ul>
+              <%
+                let n=element.Quizzes.length;
+                let k=Math.min(n,4);
+                if(k>0){
+                for(let i=0; i<k; i=i+1)
+                {
+                  %>
+                  <li><%=element.Quizzes[i].Name%></li>
+                  <%
+                }
+                if(n>k){
+                  %>
+                  <span id="many_more">And many more....</span>
+                  <%
+                }
+              }
+              else{%>
+                <span id="Nothing">No Quiz is added!!</span>
+              <%}
+              %>
+            </ul>
+          </div>
+        </div>
+      <%  
+        });
+      %>
+    </div>
+    <%
+        }
+        else
+        {
+    %>
+          <span class="No_added">No <%=choose%> is added!!</span>
+    <%      
+        }
+      }
+    %>
+  </div>
+  <div class="buttons">
+    <button type="button" class="btn btn-light" style="padding-left: 10px; margin-top: 10px; font-size: larger;"
+      onclick="quiz()">Add New <%=choose%></button>
+    <div class="add_new">
+      <input type="text" style="padding-left: 10px; margin-top: 10px; font-size: larger;"
+        placeholder="Enter New <%=choose%>: " id="input_text">
+        <br>
+      <span id="msg"></span>
+      <%if(choose==="Subject"){%>
+        <button type="button" class="btn btn-light " onclick="add_subject()" style="margin-top: 10px; font-size: larger;">Next</button>
+      <%}else{%>
+        <button type="button" class="btn btn-light " onclick="add_topic()" style="margin-top: 10px; font-size: larger;">Next</button>
+        <%}%>
+    </div>
+  </div>
+  <script src="/script/Create_choose.js"></script>
+</body>
+</html>

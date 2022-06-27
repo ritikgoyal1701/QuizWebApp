@@ -1,0 +1,178 @@
+#message {
+  display: none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+#message p {
+  font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  display: none;
+}
+
+.valid:before {
+  left: -3px;
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  left: -35px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-image: url("../images/login.jpg");
+  background-repeat: no-repeat;
+  background-size: 150%;
+  background-position: 0px 0px;
+}
+
+.box {
+  margin: 5vh auto ;
+  width: fit-content;
+  height: fit-content;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.box input[type="text"] {
+  width: 12.4vw !important;
+}
+
+hr{
+  border-top:1px solid white ;
+}
+.box h1,h2 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+  color: aliceblue;
+}
+
+.box input {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0367fd;
+  padding: 14px 10px;
+  width: 25vw;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25px;
+}
+
+.box input:focus {
+  border-color: white;
+}
+
+.box button {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0367fd;
+  padding: 14px 35px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25px;
+  cursor: pointer;
+}
+
+.box button:hover {
+  background: #0367fd;
+}
+
+.logo img {
+  width: 150px;
+  margin: 10px;
+  border-radius: 100px;
+}
+
+.radio label {
+  display: inline-block;
+  grid-template-columns: 0.5fr 0.5fr;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  border: 3px solid #0367fd;
+  border-radius: 24px;
+  width: 15vw;
+  height: 3vw;
+  color: white;
+}
+
+.radio input[type="radio"] {
+  position: left;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+.checkbox:checked+label,
+.checkbox:not(:checked)+label {
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 60px;
+  height: 16px;
+  border-radius: 8px;
+  padding: 0;
+  margin: 10px auto;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.checkbox:checked+label:before,
+.checkbox:not(:checked)+label:before {
+  position: absolute;
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #12f8ad;
+  background-color: #2a2b38;
+  font-family: 'unicons';
+  content: '\eb4f';
+  z-index: 20;
+  top: -10px;
+  left: -10px;
+  line-height: 36px;
+  text-align: center;
+  font-size: 24px;
+  transition: all 0.5s ease;
+}
+
+.checkbox:checked+label:before {
+  transform: translateX(44px) rotate(-270deg);
+}
+
+h6 span {
+  color: white;
+  padding: 0 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
