@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/result.css">
+    <title>Score</title>
+</head>
+
+<body>
+    <nav>
+        <h1>Quiz Mania</h1>
+        <div class="navbar_item">
+            <a href="/profile/">Profile</a>
+            <a href="/quiz/">Quiz</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 id="Result">Result</h1>
+        <button type="button" class="btn btn-outline check">
+            <p><span class="glyphicon glyphicon-ok correct"></span></p>
+        </button>
+        <h2>Congratulations, You Scored</h2>
+        <p class="score"><%=Scored%> out of <%=Outof%></p>
+        <button type="button" class="btn btn-outline-dark home">
+            <a href="/profile/"><p><span class="fa fa-undo" aria-hidden="true"></span> Back to Homepage</p></a>
+        </button>
+    </div>
+</body>
+
+</html>

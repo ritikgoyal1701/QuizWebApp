@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/profile.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/script/profile.js"></script>
 </head>
 <body>
     <nav>
@@ -50,24 +51,34 @@
             <% var n=data.length;
             if(n===0)
             {%>
-                <div>
-                   NOT CREATED ANY QUIZ 
+                <div id="No_Quiz">
+                   No Quiz Available 
                 </div>
             <%}
             else
             {
                 for(let i=0; i<n; i=i+1)
-                {%>
-                    <div class="card">
+                {
+                    if(user.Is_Teacher)
+                    {%>
+                        <div class="card" onclick="leader(this)" id="<%=data[i].Id%>">
+                    <%}else{%>
+                        <div class="card" onclick="attempt(this)" id="<%=data[i].Id%>">
+                    <%}%>
                         <div class="upper_card">
                             <span class="subject"><%=data[i].Name%></span>
                         </div>
                         <hr style="margin: 0; border-top: 1px solid black">
                         <div class="lower_card">
-                            <span>Attempts: <%=data[i].details.Attempts%></span>
-                            <span>Maximum Marks Achieve: <%=data[i].details.Maximum_Marks_Achieve%></span>
+                            <%if(!user.Is_Teacher){%>
+                                <span>Marks Scored: <%=data[i].Marks_Obtained%></span>
+                                <span>Time-Taken: <%=data[i].Time%> sec</span>
+                            <%}else{%>
+                                <span>Attempts: <%=data[i].details.Attempts%></span>
+                                <span>Maximum Marks Achieve: <%=data[i].details.Maximum_Marks_Achieve%></span>
+                            <%}%>
                             <span>Average: <%=data[i].details.Average%></span>
-                            <span>Maximum Marks: <%=data[i].details.Maximum_Marks%>     </span>
+                            <span>Maximum Marks: <%=data[i].details.Maximum_Marks%></span>
                         </div>
                     </div>
                 <%}

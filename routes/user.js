@@ -35,7 +35,4 @@ router.route("/quiz/:subject/")
 router.route("/quiz/:subject/:topic/")
     .get(middleware.user,usercontrollers.quiz_get);
 
-//Display Quiz
-router.route("/quiz/:subject/:topic/:quiz")
-    .get(middleware.user,usercontrollers.quiz_display);
 module.exports=router

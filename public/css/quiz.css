@@ -1,0 +1,333 @@
+body{
+    background-color: whitesmoke;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Q9yJqyVbps3wxBRWJeNcxsRsks9GJMoLCA&usqp=CAU"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0px 0px;
+    font-weight: 500;
+}
+/* 
+.pallete{
+    background-color: black;
+    float: right;
+    width: 40%;
+    height: 60vh;
+    margin-top: -30%;
+}
+.previous{
+    margin-left: 35px;
+    margin-top: 100px;
+}
+.mfr{
+    margin-left: 10px;
+    margin-top: 100px;
+}
+.next{
+    margin-left: 10px;
+    margin-top: 100px;
+} */
+nav{
+    background-color: white;    
+    padding: 5px;
+    height: 10vh;
+    width: 100vw;
+    border-bottom: black 2px solid;
+}
+nav>h1{
+    margin-left: 6vw;
+    display: inline;
+    color: black;
+    font-size: 1.5rem;
+}
+.navbar_item{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+    margin-right: 12px;
+}
+/* .quiz_box{
+    background: #fff;
+} */
+/* nav{
+    margin-top: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 4%;
+    height: 6vh;
+    padding: 0px 30px;
+    background-color: #F0ECE3;
+    display: flex;
+    justify-content: space-around;
+} */
+nav .title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 3px;
+    padding-left: 20px;
+}
+nav .quiz_name{
+    font-size: 30px;
+    font-weight: 600;
+}
+nav .timer{
+    display: flex;
+    margin-top: 4px;
+    justify-content: space-between;
+    width: 145px;
+    height: 40px;
+    background: #cce5ff;
+    border-radius: 5px;
+    padding: 0 8px;
+}
+nav .timer .time_text{
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 17px;
+    user-select: none;
+}
+nav .timer .timer_sec{
+    font-size: 18px;
+    font-weight: 500;
+    background: #343a40;
+    height: 30px;
+    width: 47px;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    border: 1px solid #343a40;
+    margin-top: 5px;
+}
+.submit{
+    height: 40px;
+    /* margin-right: -33%; */
+    margin-top: 4px;
+    margin-left: 25px;
+}
+
+#nav_tool{
+    display: flex;
+}
+
+#main_page{
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+}
+
+#question_side{
+    height: 90vh;
+    width: 65vw;
+}
+
+#question_display{
+    height: 70vh;
+    width: 65vw;
+    /* background-color: red; */
+    /* overflow: auto;
+    scrollbar-gutter: stable; */
+}
+
+#question_display_box{
+    background-color: white;
+    height: 65vh;
+    width: 60vw;
+    overflow: auto;
+    scrollbar-gutter: stable;
+    margin-left: 30px;
+    margin-top: 20px;
+    box-shadow: 0.5rem 0.5rem 0.25rem -0.15rem black;
+    padding: 45px;
+    border-radius: 8px;
+    border: 1px;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: serif;
+}
+
+.Options{
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.Option{
+    margin-bottom: -1rem;
+}
+
+#Option_Box {
+    margin-top: 36px;
+}
+
+.input_option{
+    margin-top:5px;
+    margin-right: 7px;
+}
+#row1{
+    color: black;
+    /* height: 17px; */
+    border: 1px black solid;
+    width: 70%;
+}
+#question_button{
+    height: 10vh;
+    width: 65vw;
+    padding-left:15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#navigator_side{
+    height: 90vh;
+    width: 35vw;
+}
+
+#navigator_side_box{
+    margin-top: 10px;
+    height: 86vh;
+    width: 34vw;
+    background-color: white;
+    box-shadow: 0.5rem 0.5rem 0.25rem -0.15rem black;
+}
+
+#pallete{
+    height: 55vh;
+    width: 34vw;
+    /* background-color: yellow; */
+    /* scrollbar-gutter: stable; */
+}
+
+#Navigator-heading{
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    padding-top: 11px;
+    margin-bottom: 10px;
+}
+
+#pallete-box{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    height: 45vh;
+    width: 30vw;
+    border-radius: 7px;
+    background-color: whitesmoke;
+    overflow-y: auto;
+    font-size: 1.5rem;
+    font-weight: 200;
+    padding: 25px;
+    scrollbar-gutter: stable;
+    flex-direction: row;
+    align-content: flex-start;
+}
+
+.Question_No{
+    height: 38px;
+    width: 34px;
+    padding-left: 11px;
+    border-radius: 100%;
+    background-color: white;
+    padding-top: 0px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+#description{
+    height: 25vh;
+    width: 34vw;
+    /* background-color: orchid; */
+}
+
+#description_box{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    background-color: whitesmoke;
+    height: 23vh;
+    width: 30vw;
+    border-radius: 7px;
+    margin: auto;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-right: 15px;
+}
+
+.desciption_box_2{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.number{
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#not_visited{
+    background-color: white;
+    height: 40px;
+    width: 40px;
+}
+
+#not_answered{
+    background-color: red;
+    height: 40px;
+    width: 40px;
+}
+
+#answered{
+    background-color: lightgreen;
+    height: 40px;
+    width: 40px;
+}
+
+#mark_for_review{
+    background-color: yellow;
+    height: 40px;
+    width: 40px;
+}
+
+.description_feature{
+    font-size: 1.25rem;
+    margin-left: 9px;
+    margin-right: 18px;
+    margin-top: 5px;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 100px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-track {
+    background-color:  #F0ECE3;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+#Correct_Answer{
+    font-size: 1.25rem;
+    color: green;
+}
+
+#Attempted_Answer{
+    font-size: 1.25rem;
+    color: blue;
+    margin-top: -2vh;
+}
+
+#Profile{
+    color: black;
+    font-size: 1.5rem;
+    margin-right: 12px;
+    margin-top: 8px;
+    font-weight: 500;
+}

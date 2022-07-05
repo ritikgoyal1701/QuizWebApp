@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const middleware=require("../controllers/middleware.js");
 const quizcontroller=require("../controllers/quizcontroller.js");
-const quizusage=require("../controllers/quizusage.js");
+const usercontroller=require("../controllers/usercontroller.js");
 //Quiz Creation - Subject
 router.route("/createQuiz/")
     .get(middleware.teacher,quizcontroller.subject_get)
@@ -16,22 +16,9 @@ router.route("/createQuiz/:subject")
 //Quiz Creation
 router.route("/createQuiz/:subject/:topic/newQuiz")
     .get(middleware.teacher,quizcontroller.quiz_get)
-    .post(middleware.teacher,quizcontroller.quiz_create)
+    .post(middleware.teacher,quizcontroller.quiz_create);
 
-//Show subjects
-router.route("/quizAvailable/")
-    .get(middleware.user,quizusage.show_subjects);
-
-//Show Topics
-router.route("/quizAvailable/:subject")
-    .get(middleware.user,quizusage.show_topics);
-
-//Show Quizzes
-router.route("/quizAvailable/:subject/:topics")
-    .get(middleware.user,quizusage.show_quizzes);
-
-//Show Quiz
-router.route("/quizAvailable/:subject/:topic/:Quiz")
-    .get(middleware.user,quizusage.show_quiz);
-
+router.route("/view/:Quiz")
+    .get(middleware.teacher,usercontroller.leaderboard_get)
+    .post(middleware.teacher,usercontroller.leaderboard_display);
 module.exports=router;

@@ -2,10 +2,8 @@ const mongoose = require("mongoose");
 const db = require("../schemas.js");  //Database API
 mongoose.connect("mongodb://localhost:27017/quizportaldb");
 async function create_data(quiz) {
-    // console.log(quiz);
-    let k = {};
     try {
-        results = await db.Attempt.find({ Quiz: quiz });
+        let results = await db.Attempt.find({ Quiz: quiz });
         let maxm = 0;
         let total = 0;
         let attempts = results.length;
@@ -16,47 +14,52 @@ async function create_data(quiz) {
             total = total + each.Marks_Obtained;
         })
         total = total / attempts;
-        try {
-            let result = await db.Quiz.find({ _id: quiz });
-            // console.log(result);
-            return {
-                "Attempts": attempts,
-                "Maximum_Marks_Achieve": maxm,
-                "Average": total,
-                "Maximum_Marks": result[0].Max_Marks
-            };
-        }
-        catch (err) {
-            if (err) {
-                console.log(err);
-            }
-        }
-        return k;
+        let result = await db.Quiz.find({ _id: quiz });
+        return {
+            "Attempts": attempts,
+            "Maximum_Marks_Achieve": maxm,
+            "Average": total,
+            "Maximum_Marks": result[0].Max_Marks
+        };
     }
     catch (err) {
-        if (err) {
-            console.log(err);
-        }
+        console.log(err);
     }
 }
 
 const profile = async (req, res) => {
     let data = [];
     try {
-        let result = await db.Quiz_Relation.find({ User: req.user._id });
-        let n = result.length;
-        data = await Promise.all(result.map(async (each) => {
-            let k = await create_data(each.Quiz);
-            return {
-                Name: each.Name,
-                details: k,
-            }
-        }));
+        if(req.user.Is_Teacher){
+            let result = await db.Quiz_Relation.find({ User: req.user._id });
+            data = await Promise.all(result.map(async (each) => {
+                let k = await create_data(each.Quiz);
+                return {
+                    Id: each.Quiz,
+                    Name: each.Name,
+                    details: k,
+                }
+            }));
+        }
+        else
+        {
+            let result=await db.Attempt.find({User:req.user._id});
+            data=await Promise.all(result.map(async(each)=>{
+                let k=await create_data(each.Quiz);
+                let n=(await db.Quiz.findById(each.Quiz))["Name"];
+                // console.log(n);
+                return {
+                    Id:each.Quiz,
+                    Name: n,
+                    details: k,
+                    Marks_Obtained: each.Marks_Obtained,
+                    Time: each.Time 
+                }
+            }))
+        }
     }
     catch (err) {
-        if (err) {
             console.log(err);
-        }
     }
     res.render("profile.ejs", {
         user: req.user,
@@ -122,7 +125,24 @@ const quiz_get = async (req, res) => {
             if (flag) {
                 let Topic = await db.Topic.findOne({ Topic: req.params.topic });
                 if (Topic) {
-                    let data = await Promise.all(Topic.Quizzes.map(async (element) => {
+                    let attempted=await db.Attempt.find({User:req.user._id});
+                    let Quizzes=await Topic.Quizzes.filter(function(val) {
+                        flag=false;
+                        attempted.forEach(ele=>{
+                            // console.log(ele.Quiz,val._id);
+                            if(ele.Quiz.toString()===val._id.toString()){
+                                flag=true;
+                            }
+                        })
+                        if(flag){
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                      });
+                    //   console.log(Quizzes);
+                    let data = await Promise.all(Quizzes.map(async (element) => {
                         let k = await db.Quiz.findById(element._id);
                         let r = (await db.Quiz_Relation.findOne({ Quiz: element._id }))["Creator"];
                         let at = (await db.Attempt.find({ Quiz: element._id })).length;
@@ -147,56 +167,65 @@ const quiz_get = async (req, res) => {
     }
 };
 
-const quiz_display = async (req, res) => {
+const leaderboard_get=async(req,res)=>{
     try {
-        let Subject = await db.Subject.findOne({ Subject: req.params.subject });
-        if (Subject) {
-            let flag = false;
-            await Subject.Topics.forEach(topic => {
-                // console.log(topic,req.params.topic);
-                if (topic.Name === req.params.topic) {
-                    flag = true;
-                }
-            })
-            if (flag) {
-                let Topic = await db.Topic.findOne({ Topic: req.params.topic });
-                if (Topic) {
-                    flag = false;
-                    // let comp='new ObjectId("'+req.params.quiz+'")';
-                    await Topic.Quizzes.forEach(quiz => {
-                        // console.log(typeof(JSON.stringify(quiz._id)),quiz._id);
-                        // typeof(quiz._id);
-                        if (JSON.stringify(quiz._id).split('"')[1] === req.params.quiz) {
-                            flag = true;
-                        }
-                    })
-                    // console.log(flag);
-                    if (flag) {
-                        let Quiz=await db.Quiz.findById(req.params.quiz);
-                        if(Quiz)
-                        {
-                            let data=await Promise.all(Quiz.Questions.map(async(ques)=>{
-                                let Question=await db.Question.findById(ques);
-                                return Question;
-                            }))
-                            res.send(data);
-                            return;
-                        }
-                    }
-                }
-            }
+        let chk=await db.Quiz_Relation.findOne({Quiz:req.params.Quiz,User:req.user._id});
+        if(chk){
+            res.render("leaderboard.ejs",{
+                user:req.user
+            });
         }
-        res.redirect("/logout");
+        else{
+            res.redirect("/logout");
+        }
     } catch (error) {
         console.log(error);
     }
 }
+
+const leaderboard_display=async(req,res)=>{
+    try {
+        // console.log("init");
+        let attempt=await db.Attempt.find({Quiz: req.params.Quiz});
+        // console.log(attempt);
+        let data=await Promise.all(attempt.map(async(ele)=>{
+            let n;
+            try {
+                n=await db.User.findById(ele.User);
+                // console.log(n);
+            } catch (error) {
+                console.log(error);
+            }
+            return {
+                Name:n["First_Name"]+" "+n["Last_Name"],
+                Time:ele.Time,
+                Score:ele.Marks_Obtained
+            }
+        }));
+        // console.log("sfwefwef",data);
+        data.sort((a,b)=>{
+            if(a["Score"]===b["Score"])
+            {
+                return a["Time"]-b["Time"];
+            }
+            else
+            {
+                return b["Score"]-a["Score"];
+            }
+        });
+        res.status(201).json(data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const usercontrollers = {
     profile,
     subject_get,
     topic_get,
     quiz_get,
-    quiz_display
+    leaderboard_get,
+    leaderboard_display
 };
 
 module.exports = usercontrollers;

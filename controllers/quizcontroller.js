@@ -7,8 +7,16 @@ const create_quiz = async (Quiz, topic) => {
     try {
         let Questions = Quiz.selected;
         for (Ques of Quiz.Question) {
-            let Question = new db.Question(Ques);
+            let Question = new db.Question({
+                Question:Ques.Question,
+                Options:Ques.Options
+            });
             await Question.save();
+            let Answer=new db.Answer({
+                Question:Question,
+                Answer:Ques.Answer
+            })
+            await Answer.save();
             Questions.push(Question);
         };
         // console.log(Questions);
@@ -178,19 +186,28 @@ const quiz_get = async (req, res) => {
     try {
         let result=await db.Topic.findOne({ Topic: req.params.topic });
         let verify=await exist(req.params.subject,req.params.topic);
-        // console.log(verify);
         if(!result || verify==='1'){
             res.redirect("/logout");
         }
         else{
-            Questions = [];
-            for (each of result.Quizzes) {
+            let Questions_id = [];
+            let Questions_id_set=new Set();
+            for (let each of result.Quizzes) {
                 let result1=await db.Quiz.findById(each._id );
-                for (Ques of result1.Questions) {
-                    let result2=await db.Question.findById(Ques);
-                    Questions.push(result2);
+                for(let ques of result1.Questions)
+                {
+                    let s=ques.toString();
+                    Questions_id_set.add(s);
                 }
             }
+            Questions_id=Array.from(Questions_id_set);
+            let Questions=[];
+            Questions=await Promise.all(Questions_id.map(async(temp)=>{
+                let Ques=mongoose.Types.ObjectId(temp);
+                let result2=await db.Question.findById(Ques);
+                let Answer=(await db.Answer.findOne({Question:Ques}))["Answer"];
+                return {result2,Answer};
+            }))
             res.render("quizcreate.ejs",{
                 data:Questions,
                 user:req.user

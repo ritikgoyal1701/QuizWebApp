@@ -1,0 +1,45 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LeaderBoard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/Leaderboard.css">
+  <script src="/script/Leaderboard.js" charset="utf-8"></script>
+</head>
+
+<body onload="load_leaderboard()">
+  <nav>
+    <h1>Quiz Mania</h1>
+    <div class="navbar_item">
+        <a href="/profile/">Profile</a>
+        <a href="/quiz/">Quiz</a>
+        <%
+            if(user.Is_Teacher){
+        %>
+        <a href="/createQuiz/">New Quiz</a>
+        <%
+            }
+        %>
+        <a href="/logout">Log out</a>
+    </div>
+  </nav>
+  <div id="container">
+    <h1 id="heading">LEADERBOARD</h1>
+    <div id="table_data">
+      <table id="ScoreBoard">
+        <tr>
+          <td class="Rank">Rank</td>
+          <td class="Name">Name</td>
+          <td class="Score">Score</td>
+          <td class="Time">Time Taken(s)</td>
+        </tr>
+      </table>  
+      <span id="Not_created"></span>
+    </div>
+  </div>
+</body>
+
+</html>

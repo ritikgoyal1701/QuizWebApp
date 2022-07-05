@@ -40,13 +40,22 @@ const question_schema=new mongoose.Schema({
     },
     Options:{
         type: [String]
+    }
+});
+const Question=mongoose.model("Question",question_schema);
+
+const answer_schema=new mongoose.Schema({
+    Question:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Question
     },
     Answer:{
         type: Number,
         trim: true
     }
-});
-const Question=mongoose.model("Question",question_schema);
+
+})
+const Answer=mongoose.model("Answer",answer_schema);
 
 const quiz_schema=new mongoose.Schema({
     Name:{
@@ -118,8 +127,13 @@ const Attempt_Schema=new mongoose.Schema({
         type:Number
     },
     Attempts:[{
-        type:Number
-    }]
+        Question:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:Question
+        },
+        Answer: Number
+    }],
+    Time:Number
 })
 const Attempt=mongoose.model("Attempt",Attempt_Schema);
 
@@ -130,3 +144,4 @@ exports.Subject=Subject;
 exports.Quiz_Relation=Quiz_Relation;
 exports.Attempt=Attempt;
 exports.Quiz=Quiz;
+exports.Answer=Answer;

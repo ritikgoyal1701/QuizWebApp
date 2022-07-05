@@ -44,6 +44,9 @@ app.use('/',teacherroutes);
 let userroutes=require('./routes/user');
 app.use('/',userroutes);
 
+let studentroutes=require('./routes/student');
+app.use('/',studentroutes);
+
 app.listen("3121", async function () {
     console.log("Server is started at port 3121");
 })

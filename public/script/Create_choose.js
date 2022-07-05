@@ -11,7 +11,7 @@ const choose_subject=(e)=>{
 
 const choose_quiz=(e)=>{
     let subject=e.getElementsByClassName("subject")[0].id;
-    let url=window.location.href+subject+"/";
+    let url="/test/"+subject+"/";
     window.location=url;
 }
 const choose_topic=(e)=>{
@@ -40,7 +40,7 @@ const sendHTTPreq=(method,url,data)=>{
         };
            xhr.send(JSON.stringify(data));
     })
-    return promise;
+       return promise;
 }
 const add_subject=()=>{
     let k=document.getElementById('input_text').value.trim();
