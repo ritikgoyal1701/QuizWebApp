@@ -54,7 +54,7 @@ const add_subject=()=>{
                 setTimeout(function () {
                     let url=window.location.href+k+"/";
                     window.location=url;
-                }, 5000);
+                }, 1000);
             }
         }).catch((err)=>{
             console.log(err);
@@ -74,7 +74,7 @@ const add_topic=()=>{
                 setTimeout(function () {
                     let url=window.location.href+k+"/newQuiz/";
                     window.location=url;
-                }, 5000);
+                }, 1000);
             }
         }).catch((err)=>{
             console.log(err);

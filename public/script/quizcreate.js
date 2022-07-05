@@ -64,7 +64,7 @@ const create_quiz=()=>{
                 setTimeout(function () {
                     let url="/profile";
                     window.location=url;
-                }, 5000);
+                }, 1000);
             }
         }).catch((err)=>{
             console.log(err);
