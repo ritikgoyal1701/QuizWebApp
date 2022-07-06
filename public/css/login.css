@@ -7,6 +7,19 @@ body{
     background-size:150%;
     background-position: 0px 0px;
 }
+#message {
+    display: none;
+  }
+  
+@media (max-width: 500px){
+#demo {
+    display: none;
+}
+
+#message {
+    display: block;
+}
+}
 .box{
     margin: 15vh auto 0;
     width: fit-content;

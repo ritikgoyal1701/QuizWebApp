@@ -8,17 +8,20 @@
         <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
-        <form class="box" action="/login" method="POST">
+        <p id="message" style="display: none;">Please use this on a desktop.</p>
+        <div id="demo">
+            <form class="box" action="/login" method="POST">
             
-            <h1>QUIZ MANIA</h1>
-            <hr>
-            <h2>
-                Login
-            </h2>
-            <input type="text" name="username" placeholder="Enter username" id="username" autocomplete="off" required>
-            <input type="password" name="password" placeholder="Enter password" id="password" required>
-            <button type="" onclick="login()">Login</button>
-            <a href="/register" style="color: powderblue;">Create an account?</a>
-        </form>
+                <h1>QUIZ MANIA</h1>
+                <hr>
+                <h2>
+                    Login
+                </h2>
+                <input type="text" name="username" placeholder="Enter username" id="username" autocomplete="off" required>
+                <input type="password" name="password" placeholder="Enter password" id="password" required>
+                <button type="" onclick="login()">Login</button>
+                <a href="/register" style="color: powderblue;">Create an account?</a>
+            </form>
+        </div>
     </body>
 </html>
