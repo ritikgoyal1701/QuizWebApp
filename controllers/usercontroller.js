@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../schemas.js");  //Database API
-mongoose.connect("mongodb://localhost:27017/quizportaldb");
+// mongoose.connect(`${process.env.mongo}/quizportaldb`);
 async function create_data(quiz) {
     try {
         let results = await db.Attempt.find({ Quiz: quiz });
@@ -24,6 +24,7 @@ async function create_data(quiz) {
     }
     catch (err) {
         console.log(err);
+        res.redirect("/login");
     }
 }
 
@@ -60,6 +61,8 @@ const profile = async (req, res) => {
     }
     catch (err) {
             console.log(err);
+            res.redirect("/login");
+            return;
     }
     res.render("profile.ejs", {
         user: req.user,
@@ -79,6 +82,7 @@ const subject_get = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -105,6 +109,7 @@ const topic_get = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
     // console.log(data);
     // res.send(data);
@@ -164,6 +169,7 @@ const quiz_get = async (req, res) => {
         res.redirect("/logout");
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 };
 
@@ -180,6 +186,7 @@ const leaderboard_get=async(req,res)=>{
         }
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -195,6 +202,8 @@ const leaderboard_display=async(req,res)=>{
                 // console.log(n);
             } catch (error) {
                 console.log(error);
+                res.redirect("/login");
+                return;
             }
             return {
                 Name:n["First_Name"]+" "+n["Last_Name"],
@@ -216,6 +225,7 @@ const leaderboard_display=async(req,res)=>{
         res.status(201).json(data);
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 

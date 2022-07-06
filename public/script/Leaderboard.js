@@ -46,5 +46,6 @@ const load_leaderboard=async()=>{
     }
     }).catch(error=>{
       console.log(error);
+      res.redirect("/login");
     })
 }

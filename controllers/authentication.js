@@ -23,8 +23,8 @@ const register_post=async (req, res) => {
         async function (err, user) {
             if (err) {
                 console.log(err);
-                res.status(500).json({ message: err });
-                // res.redirect("/register");
+                // res.status(500).json({ message: err });
+                res.redirect("/register");
             }
             else {
                 res.redirect("/login");
@@ -46,6 +46,7 @@ const login_post=async function (req, res) {
     req.login(user, function (err) {
         if (err) {
             console.log(err);
+            res.redirect("/login");
         } else {
             passport.authenticate("local")(req, res, function () {
                 res.redirect("/profile");

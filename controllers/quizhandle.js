@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../schemas.js");  //Database API
-mongoose.connect("mongodb://localhost:27017/quizportaldb");
+// mongoose.connect(`${process.env.mongo}/quizportaldb`);
 
 const quiz_format=async (req,res)=>{
     try {
@@ -23,6 +23,7 @@ const quiz_format=async (req,res)=>{
         }
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -37,6 +38,7 @@ const quiz_format_attempt=async (req,res)=>{
         });
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -82,6 +84,7 @@ const quiz_display = async (req, res) => {
         res.redirect("/logout");
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -113,6 +116,7 @@ const result_calculate=async(req,res)=>{
     }
     catch(error){
         console.log(error);
+        res.redirect("/login");
     }
 }
 

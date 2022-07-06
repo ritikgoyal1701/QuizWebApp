@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const db = require("../schemas.js");  //Database API
-mongoose.connect("mongodb://localhost:27017/quizportaldb");
+const env=require("dotenv");
+env.config();
+// console.log(process.env.hey);
+// mongoose.connect(process.env.mongo);
 
 const create_quiz = async (Quiz, topic) => {
     // console.log(Quiz)
@@ -38,6 +41,7 @@ const create_quiz = async (Quiz, topic) => {
         return quiz;   
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -53,6 +57,7 @@ const subject_get = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -62,7 +67,9 @@ const subject_create = async (req, res) => {
             // console.log(result);
             if (err) {
                 console.log(err);
+                res.redirect("/login");
             }
+            else{
             if (result.length === 0) {
                 let temp = new db.Subject({
                     Subject: req.body.Subject
@@ -82,10 +89,11 @@ const subject_create = async (req, res) => {
                 res.status(409).json({
                     message:"Subject already exist!!"
                 });
-            }
+            }}
         })
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -113,6 +121,7 @@ const topic_get = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
     // console.log(data);
     // res.send(data);
@@ -128,6 +137,8 @@ const topic_create = async (req, res) => {
             await temp.save(function (err) {
                 if (err) {
                     console.log(err);
+                    res.redirect("/login");
+                    return;
                 }
             });
             temp=temp._id;
@@ -149,6 +160,7 @@ const topic_create = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -179,6 +191,7 @@ async function exist(subject,topic){
         }
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -215,6 +228,7 @@ const quiz_get = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 
@@ -230,6 +244,8 @@ const quiz_create = async (req, res) => {
         await quiz_r.save(function (err) {
             if (err) {
                 console.log(err);
+                res.redirect("/login");
+                return;
             }
         })
         res.status(201).json({
@@ -237,6 +253,7 @@ const quiz_create = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        res.redirect("/login");
     }
 }
 

@@ -58,6 +58,7 @@ const add_subject=()=>{
             }
         }).catch((err)=>{
             console.log(err);
+            res.redirect("/login");
         })
     }
 }
@@ -78,6 +79,7 @@ const add_topic=()=>{
             }
         }).catch((err)=>{
             console.log(err);
+            res.redirect("/login");
         })
     }
 }

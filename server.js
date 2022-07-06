@@ -1,4 +1,7 @@
 //jshint esversion:6
+const env=require("dotenv");
+env.config();
+const mongoose=require("mongoose");
 const express = require("express");
 const body_parser = require("body-parser");
 const ejs = require("ejs");
@@ -20,6 +23,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 const db = require(__dirname + "/schemas.js");  //Database API
 const User = db.User;
+
+mongoose.connect(process.env.mongo);
 
 //Database Connection
 passport.use(User.createStrategy());
@@ -46,7 +51,7 @@ app.use('/',userroutes);
 
 let studentroutes=require('./routes/student');
 app.use('/',studentroutes);
-
+// console.log(process.env.hey);
 app.listen("3121", async function () {
     console.log("Server is started at port 3121");
 })

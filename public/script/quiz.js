@@ -148,10 +148,11 @@ const Submit=async()=>{
         json,time
     }).then(message=>{
         let temp=total_ques*2;
-        console.log(message);
+        // console.log(message);
         window.location.href=window.location.href+message.Score+"/"+temp+"/";
     }).catch(error=>{
         console.log(error);
+        res.redirect("/login");
     })
 }
 
@@ -305,5 +306,6 @@ const post_req=(attempt,teach)=>{
         await update_question();
     }).catch((err)=>{
         console.log(err);
+        res.redirect("/login");
     })
 }

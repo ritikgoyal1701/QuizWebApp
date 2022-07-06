@@ -68,6 +68,8 @@ const create_quiz=()=>{
             }
         }).catch((err)=>{
             console.log(err);
+            res.redirect("/login");
+            return;
         })
     }
     else if(document.getElementById("quiz").value.trim().length===0){
