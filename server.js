@@ -52,6 +52,11 @@ app.use('/',userroutes);
 let studentroutes=require('./routes/student');
 app.use('/',studentroutes);
 // console.log(process.env.hey);
-app.listen("3121", async function () {
-    console.log("Server is started at port 3121");
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port, async function () {
+    console.log("Server is started at "+port);
 })
