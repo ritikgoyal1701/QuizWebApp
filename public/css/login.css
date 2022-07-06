@@ -6,20 +6,8 @@ body{
     background-repeat: no-repeat;
     background-size:150%;
     background-position: 0px 0px;
-}
-#message {
-    display: none;
-  }
-  
-@media (max-width: 500px){
-#demo {
-    display: none;
-}
+}  
 
-#message {
-    display: block;
-}
-}
 .box{
     margin: 15vh auto 0;
     width: fit-content;
@@ -139,3 +127,17 @@ p
       transition: all 0.5s ease;
   }
   
+  @media (max-width: 750px){
+    .demo {
+        display: none;
+    }
+
+    .message {
+        display: block !important;
+        font-size: 2 rem;
+        color: black;
+        text-align: center;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}

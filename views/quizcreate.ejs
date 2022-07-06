@@ -15,92 +15,97 @@
 </head>
 
 <body>
-    <nav>
-        <h1>Quiz Mania</h1>
-        <div class="navbar_item">
-            <a href="/profile/">Profile</a>
-            <a href="/quiz/">Quiz</a>
-            <%
-                if(user.Is_Teacher){
-            %>
-            <a href="/createQuiz/">New Quiz</a>
-            <%
-                }
-            %>
-            <a href="/logout">Log out</a>
-        </div>
-    </nav>
-    <div class="space">
-        <h1>CREATE QUIZ</h1>
-    </div>
-    <div class="quiz_btn">
-        <div class="head">
-            Quiz
-            <form class="ques" action=""
-                style="display: inline; font-weight: bolder; padding-left: 5px; font-size: 15px;">
-                <input type="text" name="quiz" id="quiz" required><br>
-            </form>
-        </div>
-        <div>
-            <div id="msg"></div>
-        </div>
-        <div class="create_quiz">
-            <button class="btn btn-light" id="create_quiz" onclick="create_quiz();">CREATE QUIZ</button>
-        </div>
-    </div>
-    <div class="quizzes">
-        <div class="select_ques">
-            <div class="btn20">
-                <button class="btn btn-outline-light " id="Button" type="button" style="margin-right: 5px;"
-                    value="Choose Questions from Database" onclick="switchVisible();">Choose Questions from
-                    Database</button>
-                <button class="btn btn-outline-light" id="Button" type="button" onclick="switchhVisible();">Insert New
-                    Questions</button>
-
+    <p  class="message" style="display: none;">Please use this on a desktop.</p>
+        
+    <div class="demo">
+        <nav>
+            <h1>Quiz Mania</h1>
+            <div class="navbar_item">
+                <a href="/profile/">Profile</a>
+                <a href="/quiz/">Quiz</a>
+                <%
+                    if(user.Is_Teacher){
+                %>
+                <a href="/createQuiz/">New Quiz</a>
+                <%
+                    }
+                %>
+                <a href="/logout">Log out</a>
             </div>
-            <div class="questions">
-                <div id="database">
-                    <h2>Please select from the following questions:</h2>
-                    <div id="ques">
-                        <%
-                            if(data.length===0){
-                        %>
-                                <span class="No_added">No Question is added!!</span>
-                        <%
-                            }
-                            else
-                            {
-                                data.forEach(element=>{
-                        %>
-                                    <div class="card w-100 ques_card card-body" id="<%=element.result2._id%>">
-                                        <p><%=element.result2.Question%></p>
-                                        <p><%=element.result2.Options[0]%></p>
-                                        <p><%=element.result2.Options[1]%></p>
-                                        <p><%=element.result2.Options[2]%></p>
-                                        <p><%=element.result2.Options[3]%></p>
-                                        <p> Answer: Option-<%=element.Answer%> </p>
-                                        <button class="btn btn-outline-dark select" id="Button1" type="button">Select</button>
-                                    </div>
-                        <%            
-                                })
-                            }
-                        %>
-                        
+        </nav>
+        <div class="space">
+            <h1>CREATE QUIZ</h1>
+        </div>
+        <div class="quiz_btn">
+            <div class="head">
+                Quiz
+                <form class="ques" action=""
+                    style="display: inline; font-weight: bolder; padding-left: 5px; font-size: 15px;">
+                    <input type="text" name="quiz" id="quiz" required><br>
+                </form>
+            </div>
+            <div>
+                <div id="msg"></div>
+            </div>
+            <div class="create_quiz">
+                <button class="btn btn-light" id="create_quiz" onclick="create_quiz();">CREATE QUIZ</button>
+            </div>
+        </div>
+        <div class="quizzes">
+            <div class="select_ques">
+                <div class="btn20">
+                    <button class="btn btn-outline-light " id="Button" type="button" style="margin-right: 5px;"
+                        value="Choose Questions from Database" onclick="switchVisible();">Choose Questions from
+                        Database</button>
+                    <button class="btn btn-outline-light" id="Button" type="button" onclick="switchhVisible();">Insert New
+                        Questions</button>
+    
+                </div>
+                <div class="questions">
+                    <div id="database">
+                        <h2>Please select from the following questions:</h2>
+                        <div id="ques">
+                            <%
+                                if(data.length===0){
+                            %>
+                                    <span class="No_added">No Question is added!!</span>
+                            <%
+                                }
+                                else
+                                {
+                                    data.forEach(element=>{
+                            %>
+                                        <div class="card w-100 ques_card card-body" id="<%=element.result2._id%>">
+                                            <p><%=element.result2.Question%></p>
+                                            <p><%=element.result2.Options[0]%></p>
+                                            <p><%=element.result2.Options[1]%></p>
+                                            <p><%=element.result2.Options[2]%></p>
+                                            <p><%=element.result2.Options[3]%></p>
+                                            <p> Answer: Option-<%=element.Answer%> </p>
+                                            <button class="btn btn-outline-dark select" id="Button1" type="button">Select</button>
+                                        </div>
+                            <%            
+                                    })
+                                }
+                            %>
+                            
+                        </div>
+                    </div>
+                    <div id="insert_new">
+                        <!-- <button type="submit" class="btn btn-outline-light " id="btn1" onclick="insertnew()">Add the Question</button> -->
                     </div>
                 </div>
-                <div id="insert_new">
-                    <!-- <button type="submit" class="btn btn-outline-light " id="btn1" onclick="insertnew()">Add the Question</button> -->
-                </div>
+    
             </div>
-
+            <div class="selected_ques">
+                <h1>Selected Questions</h1>
+                <div id="qsabcd" class="questions"></div>
+            </div>
+    
         </div>
-        <div class="selected_ques">
-            <h1>Selected Questions</h1>
-            <div id="qsabcd" class="questions"></div>
-        </div>
-
+    
     </div>
-
+    
 </body>
 <script type="text/javascript" src="/script/quizcreate.js"></script>
 

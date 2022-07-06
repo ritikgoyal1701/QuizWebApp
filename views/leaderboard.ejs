@@ -11,35 +11,39 @@
 </head>
 
 <body onload="load_leaderboard()">
-  <nav>
-    <h1>Quiz Mania</h1>
-    <div class="navbar_item">
-        <a href="/profile/">Profile</a>
-        <a href="/quiz/">Quiz</a>
-        <%
-            if(user.Is_Teacher){
-        %>
-        <a href="/createQuiz/">New Quiz</a>
-        <%
-            }
-        %>
-        <a href="/logout">Log out</a>
+  <p  class="message" style="display: none;">Please use this on a desktop.</p>
+  <div class="demo">
+    <nav>
+      <h1>Quiz Mania</h1>
+      <div class="navbar_item">
+          <a href="/profile/">Profile</a>
+          <a href="/quiz/">Quiz</a>
+          <%
+              if(user.Is_Teacher){
+          %>
+          <a href="/createQuiz/">New Quiz</a>
+          <%
+              }
+          %>
+          <a href="/logout">Log out</a>
+      </div>
+    </nav>
+    <div id="container">
+      <h1 id="heading">LEADERBOARD</h1>
+      <div id="table_data">
+        <table id="ScoreBoard">
+          <tr>
+            <td class="Rank">Rank</td>
+            <td class="Name">Name</td>
+            <td class="Score">Score</td>
+            <td class="Time">Time Taken(s)</td>
+          </tr>
+        </table>  
+        <span id="Not_created"></span>
+      </div>
     </div>
-  </nav>
-  <div id="container">
-    <h1 id="heading">LEADERBOARD</h1>
-    <div id="table_data">
-      <table id="ScoreBoard">
-        <tr>
-          <td class="Rank">Rank</td>
-          <td class="Name">Name</td>
-          <td class="Score">Score</td>
-          <td class="Time">Time Taken(s)</td>
-        </tr>
-      </table>  
-      <span id="Not_created"></span>
-    </div>
-  </div>
+  </div>      
+  
 </body>
 
 </html>

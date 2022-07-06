@@ -47,6 +47,23 @@ body{
 tr:nth-child(even){
     background-color: lightgreen;
 }
+
+
+@media (max-width: 750px){
+  .demo {
+      display: none;
+  }
+
+  .message {
+      display: block !important;
+      font-size: 2 rem;
+      color: black;
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: auto;
+  }
+}
+
 #ScoreBoard{
   font-size: 1.5rem;
   /* width: 60vw; */
