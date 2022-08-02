@@ -42,6 +42,7 @@ const load_leaderboard=async()=>{
       {
       await data.forEach(element => {
         create(element.Name,element.Score,element.Time,i);
+        i=i+1;
       });
     }
     }).catch(error=>{
